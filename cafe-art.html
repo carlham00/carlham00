@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe</title>
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .building-page {
+            padding: 20px;
+            padding-bottom: 150px;
+            text-align: center;
+            min-height: 100vh;
+            background-image: url(assets/images/buildings/po.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+        }
+        .building-page h1 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        .back-button {
+            margin: 20px;
+            margin-top: 40px;
+            padding: 10px 20px;
+            font-family: 'Press Start 2P', cursive;
+            background-color: #5b8c5a;
+            border: 3px solid #3a5a40;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .back-button:hover {
+            background-color: #4a7c4a;
+        }
+        
+        .game-container {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            border: 8px solid #e67e22;
+            box-shadow: 0 15px 35px rgba(139, 69, 19, 0.4);
+            max-width: 800px;
+            width: 90%;
+            max-height: 800px;
+            text-align: center;
+            margin: 50px auto 30px auto;
+            margin-top: 10px;
+        }
+        
+        .header {
+            margin-bottom: 50px;
+        }
+        
+        /* h1 {
+            color: #8B4513;
+            font-size: 2.8rem;
+            text-shadow: 3px 3px 0 #d4a574;
+            margin-bottom: 10px;
+        } */
+        
+        /* .subtitle {
+            color: #a1887f;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        } */
+        
+        .game-info {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(91, 140, 90, 0.2);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 35px;
+            border: 4px solid #5b8c5a;
+        }
+        
+        .info-box {
+            text-align: center;
+        }
+        
+        .info-label {
+            color: #3a5a40;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .info-value {
+            color: #3a5a40;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            margin-bottom: 20px;
+            perspective: 1000px;
+        }
+        
+        @media (max-width: 600px) {
+            .game-board {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .card {
+            height: 128px;
+            width: 128px;
+            border-radius: 15px;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            transform: rotateY(0deg);
+        }
+        
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+        
+        .card.matched {
+            transform: rotateY(180deg);
+            cursor: default;
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            overflow: hidden;
+        }
+        
+        .card-front {
+            background: linear-gradient(135deg, #8B4513, #a0522d);
+            border: 4px solid #5d4037;
+            color: white;
+            transform: rotateY(180deg);
+            /* padding: 10px; */
+        }
+        
+        .card-front img {
+            max-width: 150%;
+            max-height: 150%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .card-back {
+            background: linear-gradient(135deg, #d4a574, #f5e6d3);
+            border: 4px solid #6a1b9a;
+            color: #8B4513;
+            background-image: url(assets/images/cafe_game/2.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .controls {
+            margin-top: 25px;
+        }
+        
+        button {
+            padding: 15px 30px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .start-btn {
+            background: linear-gradient(45deg, #ff9933, #ffb366);
+            color: white;
+            border: 4px solid #e67e22;
+        }
+        
+        .start-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(230, 126, 34, 0.4);
+        }
+        
+        .reset-btn {
+            background: linear-gradient(45deg, #9c27b0, #ba68c8);
+            color: white;
+            border: 4px solid #6a1b9a;
+        }
+        
+        .reset-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4);
+        }
+        
+        .message {
+            margin-top: 25px;
+            padding: 18px;
+            background: #fff4e6; /* very light orange/peach */
+            border-radius: 20px;
+            border: 2px solid #ffd6b3; /* subtle pastel border */
+            font-size: 1.15rem;
+            color: #b56a2a; /* softened text */
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        
+        .message.show {
+            opacity: 1;
+        }
+        
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #ff4081;
+            animation: fall 5s linear forwards;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .win-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        
+        .win-card {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 500px;
+            border: 10px solid gold;
+            animation: popIn 0.5s ease;
+        }
+        
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            80% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .win-title {
+            color: #ff6b00;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0 #ffd700;
+        }
+        
+        .win-text {
+            color: #5d4037;
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+        }
+        
+        .love-note {
+            color: #e91e63;
+            font-style: italic;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="building-page">
+        <h1>Valley Cafe</h1>
+        <p class="subtitle">Play a little game while sipping your drink! Click "Start Game" to begin!</p>
+
+        <button class="back-button" onclick="window.location.href='index.html'">← Back to Valley</button>
+
+        <div class="game-container">
+            <div class="game-info">
+                <div class="info-box">
+                    <div class="info-label">Moves</div>
+                    <div class="info-value" id="moves">0</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-label">Matches</div>
+                    <div class="info-value" id="matches">0/6</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-label">Time</div>
+                    <div class="info-value" id="timer">60s</div>
+                </div>
+            </div>
+            
+            <div class="game-board" id="gameBoard"></div>
+            
+            <div class="message show" id="message">
+                Click "Start Game" to begin!
+            </div>
+            
+            <div class="controls">
+                <button class="start-btn" onclick="startGame()">Start Game</button>
+                <button class="reset-btn" onclick="resetGame()">Reset</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Celebration effects -->
+    <div class="celebration" id="celebration"></div>
+    
+    <!-- Win screen -->
+    <div class="win-screen" id="winScreen">
+        <div class="win-card">
+            <h2 class="win-title">You Did It!</h2>
+            <p class="win-text">You found all the matches!</p>
+            <p class="win-text">Score: <span id="finalScore">0</span> points</p>
+            <p class="win-text">Time: <span id="finalTime">0s</span> remaining</p>
+            <div class="controls">
+                <button class="reset-btn" onclick="playAgain()">Return</button>
+            </div>
+            <p class="love-note">Made with love 💖</p>
+        </div>
+    </div>
+
+    <script>
+        // Game configuration
+        const gameConfig = {
+            totalPairs: 6,
+            timeLimit: 60, // seconds
+            images: [
+                { image: "1c.jpg", name: "babys breath flower" },
+                { image: "1y.jpg", name: "iris flower" },
+                { image: "2c.jpg", name: "otter" },
+                { image: "2y.jpg", name: "hedgehog" },
+                { image: "3c.jpg", name: "coffee" },
+                { image: "3y.jpg", name: "matcha" },
+                { image: "4c.jpg", name: "blue/yellow" },
+                { image: "4y.jpg", name: "green/purple" },
+                { image: "5c.jpg", name: "carrot cake" },
+                { image: "5y.jpg", name: "cheesecake" },
+                { image: "6c.jpg", name: "mercury" },
+                { image: "6y.jpg", name: "saturn" }
+            ]
+        };
+        
+        // Game state
+        let gameState = {
+            cards: [],
+            flippedCards: [],
+            matchedPairs: 0,
+            moves: 0,
+            timeLeft: gameConfig.timeLimit,
+            gameActive: false,
+            timer: null
+        };
+        
+        // DOM elements
+        const elements = {
+            gameBoard: document.getElementById('gameBoard'),
+            moves: document.getElementById('moves'),
+            matches: document.getElementById('matches'),
+            timer: document.getElementById('timer'),
+            message: document.getElementById('message'),
+            celebration: document.getElementById('celebration'),
+            winScreen: document.getElementById('winScreen'),
+            finalScore: document.getElementById('finalScore'),
+            finalTime: document.getElementById('finalTime')
+        };
+        
+        // Initialize game
+        function initGame() {
+            // Create card pairs
+            gameState.cards = [];
+            for (let i = 0; i < gameConfig.totalPairs * 2; i+=2) {
+                // Add two of each card
+                gameState.cards.push({
+                    id: i,
+                    image: gameConfig.images[i].image,
+                    name: gameConfig.images[i].name,
+                    matched: false
+                });
+                gameState.cards.push({
+                    id: i,
+                    image: gameConfig.images[i+1].image,
+                    name: gameConfig.images[i+1].name,
+                    matched: false
+                });
+            }
+            
+            // Shuffle cards
+            shuffleCards();
+            
+            // Render cards
+            renderCards();
+            
+            // Reset stats
+            updateStats();
+            
+            // Show initial message
+            showMessage("Click \"Start Game\" and find matching items!", true);
+        }
+        
+        // Shuffle cards using Fisher-Yates algorithm
+        function shuffleCards() {
+            for (let i = gameState.cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [gameState.cards[i], gameState.cards[j]] = [gameState.cards[j], gameState.cards[i]];
+            }
+        }
+        
+        // Render cards to the board
+        function renderCards() {
+            elements.gameBoard.innerHTML = '';
+            
+            gameState.cards.forEach((card, index) => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'card';
+                cardElement.dataset.index = index;
+                
+                cardElement.innerHTML = `
+                    <div class="card-front">
+                        <img src="assets/images/cafe_game/memory/${card.image}" alt="${card.name}">
+                    </div>
+                    <div class="card-back"></div>
+                `;
+                
+                cardElement.addEventListener('click', () => handleCardClick(index));
+                elements.gameBoard.appendChild(cardElement);
+            });
+        }
+        
+        // Handle card click
+        function handleCardClick(index) {
+            if (!gameState.gameActive) return;
+            
+            const card = gameState.cards[index];
+            const cardElement = elements.gameBoard.children[index];
+            
+            // Don't allow clicking if card is already flipped or matched
+            if (card.matched || gameState.flippedCards.includes(index)) return;
+            
+            // Don't allow more than 2 cards flipped
+            if (gameState.flippedCards.length >= 2) return;
+            
+            // Flip the card
+            cardElement.classList.add('flipped');
+            gameState.flippedCards.push(index);
+            
+            // If two cards are flipped, check for match
+            if (gameState.flippedCards.length === 2) {
+                gameState.moves++;
+                updateStats();
+                
+                const [firstIndex, secondIndex] = gameState.flippedCards;
+                const firstCard = gameState.cards[firstIndex];
+                const secondCard = gameState.cards[secondIndex];
+                
+                if (firstCard.id === secondCard.id) {
+                    // Match found!
+                    gameState.cards[firstIndex].matched = true;
+                    gameState.cards[secondIndex].matched = true;
+                    gameState.matchedPairs++;
+                    
+                    showMessage(`Perfect match! ${firstCard.name} and ${secondCard.name} 🎉`, true);
+                    createConfetti();
+                    
+                    // Check for win
+                    setTimeout(() => {
+                        if (gameState.matchedPairs === gameConfig.totalPairs) {
+                            winGame();
+                        }
+                    }, 500);
+                    
+                    // Clear flipped cards
+                    gameState.flippedCards = [];
+                } else {
+                    // No match - flip back after delay
+                    showMessage("Not a match! Try again!", true);
+                    setTimeout(() => {
+                        elements.gameBoard.children[firstIndex].classList.remove('flipped');
+                        elements.gameBoard.children[secondIndex].classList.remove('flipped');
+                        gameState.flippedCards = [];
+                    }, 1000);
+                }
+            }
+        }
+        
+        // Start game
+        function startGame() {
+            if (gameState.gameActive) return;
+            
+            resetGame();
+            gameState.gameActive = true;
+            
+            // Start timer
+            gameState.timer = setInterval(() => {
+                gameState.timeLeft--;
+                elements.timer.textContent = `${gameState.timeLeft}s`;
+                
+                if (gameState.timeLeft <= 0) {
+                    endGame(false);
+                }
+            }, 1000);
+            
+            showMessage("Game started!", true);
+        }
+        
+        // Reset game
+        function resetGame() {
+            clearInterval(gameState.timer);
+            
+            gameState = {
+                cards: [],
+                flippedCards: [],
+                matchedPairs: 0,
+                moves: 0,
+                timeLeft: gameConfig.timeLimit,
+                gameActive: false,
+                timer: null
+            };
+            
+            initGame();
+            elements.winScreen.style.display = 'none';
+        }
+        
+        // Win game
+        function winGame() {
+            clearInterval(gameState.timer);
+            gameState.gameActive = false;
+            
+            // Calculate score
+            const score = Math.max(0, gameState.timeLeft * 10 + (gameConfig.totalPairs * 20) - (gameState.moves * 5));
+            
+            // Update final score display
+            elements.finalScore.textContent = score;
+            elements.finalTime.textContent = gameState.timeLeft;
+            
+            // Show win screen
+            setTimeout(() => {
+                elements.winScreen.style.display = 'flex';
+                createConfetti(50);
+            }, 1000);
+            
+            showMessage("🎉 You won! 🎉", true);
+        }
+        
+        // End game (time's up)
+        function endGame(win) {
+            clearInterval(gameState.timer);
+            gameState.gameActive = false;
+            
+            if (!win) {
+                showMessage("Time's up! Try again! ⏰", true);
+                // Flip all cards to show solution
+                setTimeout(() => {
+                    gameState.cards.forEach((card, index) => {
+                        elements.gameBoard.children[index].classList.add('flipped');
+                    });
+                }, 1000);
+            }
+        }
+        
+        // Update game stats display
+        function updateStats() {
+            elements.moves.textContent = gameState.moves;
+            elements.matches.textContent = `${gameState.matchedPairs}/${gameConfig.totalPairs}`;
+            elements.timer.textContent = `${gameState.timeLeft}s`;
+        }
+        
+        // Show message
+        function showMessage(text, show = true) {
+            elements.message.textContent = text;
+            if (show) {
+                elements.message.classList.add('show');
+                setTimeout(() => {
+                    elements.message.classList.remove('show');
+                }, 10000);
+            }
+        }
+        
+        // Create confetti effect
+        function createConfetti(count = 20) {
+            elements.celebration.innerHTML = '';
+            elements.celebration.style.display = 'block';
+            
+            for (let i = 0; i < count; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.background = getRandomColor();
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.width = Math.random() * 20 + 10 + 'px';
+                confetti.style.height = Math.random() * 20 + 10 + 'px';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                
+                elements.celebration.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                    if (elements.celebration.children.length === 0) {
+                        elements.celebration.style.display = 'none';
+                    }
+                }, 5000);
+            }
+        }
+        
+        // Get random color for confetti
+        function getRandomColor() {
+            const colors = ['#ff4081', '#ff9800', '#4CAF50', '#2196F3', '#9c27b0', '#ffeb3b'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        
+        // Play again
+        function playAgain() {
+            elements.winScreen.style.display = 'none';
+            resetGame();
+            startGame();
+        }
+        
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>

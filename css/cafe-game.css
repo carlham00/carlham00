@@ -1,0 +1,849 @@
+/* Café Baking Game Styles */
+.cafe-baking-page {
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    min-height: 100vh;
+    /* font-family: 'Press Start 2P', cursive; */
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.cafe-baking-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 25px;
+    padding: 30px;
+    border: 10px solid #ff6b88;
+    box-shadow: 0 20px 50px rgba(255, 107, 136, 0.3);
+    position: relative;
+}
+
+/* Café Header */
+.cafe-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 5px dashed #ff9aa2;
+}
+
+.cafe-header h1 {
+    color: #ff6b88;
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    text-shadow: 4px 4px 0 #ffcdd2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.cafe-header .fas.fa-heart {
+    color: #ff4081;
+    animation: heartbeat 1.5s infinite;
+}
+
+.cafe-subtitle {
+    color: #ff8e8e;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Main Game Layout */
+.game-main {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+    min-height: 700px;
+}
+
+/* Sidebars */
+.game-sidebar, .progress-sidebar {
+    background: linear-gradient(135deg, #fff9f9 0%, #fff0f0 100%);
+    border-radius: 20px;
+    padding: 25px;
+    border: 5px solid #ffb7b2;
+    box-shadow: inset 0 0 20px rgba(255, 183, 178, 0.2);
+}
+
+/* Recipe Box */
+.recipe-box {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 4px solid #ffcdd2;
+    box-shadow: 0 5px 15px rgba(255, 205, 210, 0.3);
+}
+
+.recipe-box h3 {
+    color: #ff6b88;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.recipe-instructions ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.recipe-instructions li {
+    padding: 8px 0;
+    border-bottom: 2px dotted #ffcdd2;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ingredient-check {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.current-step {
+    background: #e8f5e9;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    border: 3px solid #81c784;
+    font-size: 0.8rem;
+    color: #2e7d32;
+}
+
+/* Ingredients Panel */
+.ingredients-panel {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 4px solid #ffcdd2;
+}
+
+.ingredients-panel h3 {
+    color: #ff6b88;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ingredients-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.ingredient-item {
+    background: linear-gradient(135deg, #fff, #f9f9f9);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    border: 3px solid #ffb7b2;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.ingredient-item:hover {
+    transform: translateY(-5px);
+    border-color: #ff6b88;
+    box-shadow: 0 10px 20px rgba(255, 107, 136, 0.2);
+}
+
+.ingredient-item:active {
+    transform: translateY(-2px);
+}
+
+.ingredient-icon {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+    transition: transform 0.3s ease;
+}
+
+.ingredient-item:hover .ingredient-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.ingredient-name {
+    font-size: 0.8rem;
+    color: #ff6b88;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.ingredient-count {
+    font-size: 0.7rem;
+    color: #666;
+    background: #f0f0f0;
+    padding: 3px 8px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.love-ingredient {
+    background: linear-gradient(135deg, #ffcdd2, #ffebee);
+    animation: pulse 2s infinite;
+    grid-column: span 2;
+}
+
+.love-ingredient .ingredient-count {
+    background: #ff4081;
+    color: white;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* Game Messages */
+.game-messages {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    border: 4px solid #81c784;
+}
+
+.game-messages h3 {
+    color: #4caf50;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.message-box {
+    background: #e8f5e9;
+    padding: 20px;
+    border-radius: 10px;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #2e7d32;
+    line-height: 1.5;
+}
+
+/* Baking Station */
+.baking-station {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.cake-display-area {
+    background: #fff9f9;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    border: 5px solid #ffb7b2;
+}
+
+.cake-pan {
+    width: 200px;
+    height: 100px;
+    background: #78909c;
+    border-radius: 10px;
+    margin: 0 auto 30px;
+    position: relative;
+    border: 8px solid #546e7a;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.cake-batter {
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+    height: 0;
+    background: linear-gradient(to top, #f5e6d3, #d7ccc8);
+    border-radius: 5px 5px 0 0;
+    transition: height 0.5s ease;
+}
+
+.cake-toppings {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    right: 0;
+    height: 100px;
+}
+
+.cake-status {
+    margin-top: 20px;
+}
+
+.status-text {
+    font-size: 1rem;
+    color: #ff6b88;
+    margin-bottom: 15px;
+    min-height: 30px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 3px solid #bdbdbd;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b88, #ff9aa2);
+    transition: width 0.5s ease;
+}
+
+/* Oven Area */
+.oven-area {
+    background: #5d4037;
+    border-radius: 20px;
+    padding: 25px;
+    border: 8px solid #3e2723;
+}
+
+.oven {
+    background: #8d6e63;
+    border-radius: 15px;
+    padding: 20px;
+    border: 6px solid #6d4c41;
+}
+
+.oven-door {
+    background: #a1887f;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 5px solid #795548;
+}
+
+.oven-window {
+    width: 100%;
+    height: 150px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    border: 4px solid #ff9800;
+    position: relative;
+    overflow: hidden;
+}
+
+.baking-cake {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 0;
+    background: #d7ccc8;
+    border-radius: 10px 10px 0 0;
+    transition: height 1s ease;
+}
+
+.oven-controls {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #37474f;
+    padding: 15px;
+    border-radius: 10px;
+    border: 4px solid #263238;
+}
+
+.temp-display, .timer-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 1rem;
+}
+
+.temp-display .fas, .timer-display .fas {
+    color: #ff9800;
+    font-size: 1.2rem;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.btn-action {
+    font-family: 'Press Start 2P', cursive;
+    padding: 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 60px;
+}
+
+.btn-action:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn-action:not(:disabled):hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.btn-mix {
+    background: linear-gradient(45deg, #ff9800, #ffb74d);
+    color: white;
+    border: 4px solid #ff8f00;
+}
+
+.btn-bake {
+    background: linear-gradient(45deg, #f44336, #ef5350);
+    color: white;
+    border: 4px solid #d32f2f;
+}
+
+.btn-decorate {
+    background: linear-gradient(45deg, #9c27b0, #ba68c8);
+    color: white;
+    border: 4px solid #7b1fa2;
+}
+
+.btn-reset {
+    background: linear-gradient(45deg, #607d8b, #90a4ae);
+    color: white;
+    border: 4px solid #455a64;
+    grid-column: span 2;
+}
+
+/* Progress Sidebar */
+.progress-tracker {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 4px solid #64b5f6;
+}
+
+.progress-tracker h3 {
+    color: #1976d2;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.progress-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.progress-step {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: #e3f2fd;
+    border-radius: 10px;
+    border: 3px solid #bbdefb;
+    transition: all 0.3s ease;
+}
+
+.progress-step.active {
+    background: #bbdefb;
+    border-color: #1976d2;
+    transform: scale(1.02);
+}
+
+.progress-step.completed {
+    background: #c8e6c9;
+    border-color: #4caf50;
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+    background: #1976d2;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.progress-step.completed .step-number {
+    background: #4caf50;
+}
+
+.step-text {
+    flex: 1;
+    font-size: 0.8rem;
+    color: #333;
+}
+
+.step-check {
+    color: #4caf50;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.progress-step.completed .step-check {
+    opacity: 1;
+}
+
+/* Proposal Section */
+.proposal-section {
+    display: none;
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 25px;
+    border: 6px solid #ff4081;
+    animation: slideIn 0.8s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.proposal-card {
+    text-align: center;
+}
+
+.proposal-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.proposal-header .fas.fa-heart {
+    color: #ff4081;
+    font-size: 1.5rem;
+    animation: heartbeat 1.5s infinite;
+}
+
+.proposal-header h2 {
+    color: #ff4081;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.final-cake-display {
+    margin: 30px 0;
+    position: relative;
+    height: 150px;
+}
+
+.cake-layers {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+}
+
+.cake-layer {
+    position: absolute;
+    background: #f5e6d3;
+    border-radius: 50px 50px 10px 10px;
+    border: 4px solid #d7ccc8;
+}
+
+.cake-layer.bottom {
+    width: 120px;
+    height: 40px;
+    bottom: 0;
+    left: 10px;
+}
+
+.cake-layer.middle {
+    width: 90px;
+    height: 35px;
+    bottom: 35px;
+    left: 25px;
+    background: #ffcdd2;
+    border-color: #ffb7b2;
+}
+
+.cake-layer.top {
+    width: 70px;
+    height: 30px;
+    bottom: 65px;
+    left: 35px;
+    background: #fff9c4;
+    border-color: #fff59d;
+}
+
+.cake-topper {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-15px); }
+}
+
+.cake-message {
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    right: 0;
+    color: #ff6b88;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.proposal-question {
+    margin: 30px 0;
+    padding: 20px;
+    background: #ffebee;
+    border-radius: 15px;
+    border: 3px solid #ffcdd2;
+}
+
+.proposal-question p {
+    color: #d32f2f;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.proposal-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-proposal {
+    font-family: 'Press Start 2P', cursive;
+    padding: 20px 40px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-yes {
+    background: linear-gradient(45deg, #ff4081, #f50057);
+    color: white;
+    border: 5px solid #ff79b0;
+}
+
+.btn-yes:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 40px #ff4081;
+}
+
+.btn-no {
+    background: linear-gradient(45deg, #448aff, #2979ff);
+    color: white;
+    border: 5px solid #82b1ff;
+}
+
+.btn-no:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px #448aff;
+}
+
+/* Café Tips */
+.cafe-tips {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    border: 4px solid #ffd54f;
+}
+
+.cafe-tips h3 {
+    color: #ff8f00;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cafe-tips ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cafe-tips li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #ffecb3;
+    font-size: 0.7rem;
+    color: #5d4037;
+}
+
+.cafe-tips li:last-child {
+    border-bottom: none;
+}
+
+/* Footer */
+.cafe-footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 5px dashed #ff9aa2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn-back {
+    font-family: 'Press Start 2P', cursive;
+    padding: 18px 35px;
+    background: linear-gradient(45deg, #ff9aa2, #ffb7b2);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 5px solid #ff6b88;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.btn-back:hover {
+    background: linear-gradient(45deg, #ffb7b2, #ff9aa2);
+    transform: scale(1.05) rotate(-2deg);
+    box-shadow: 0 10px 25px rgba(255, 107, 136, 0.3);
+}
+
+.cafe-signature p {
+    color: #ff6b88;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Effects */
+#effects-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.particle {
+    position: absolute;
+    pointer-events: none;
+    animation: floatUp 2s linear forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-150px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .game-main {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+    
+    .game-sidebar {
+        order: 1;
+    }
+    
+    .baking-station {
+        order: 2;
+    }
+    
+    .progress-sidebar {
+        order: 3;
+    }
+}
+
+@media (max-width: 768px) {
+    .cafe-header h1 {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .ingredients-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    .proposal-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-proposal {
+        min-width: 100%;
+    }
+}
+
+.emoji, .counter, .ingredient-label {
+    font-family: 'Press Start 2P', cursive, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+}

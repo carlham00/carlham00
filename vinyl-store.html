@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinyl Store - Yige's and Carl's Valley</title>
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <style>
+        .building-page {
+            padding: 20px;
+            text-align: center;
+            min-height: 100vh;
+            background-image: url(assets/images/buildings/vs.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+        }
+        .building-page h1 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        .back-button {
+            margin: 20px;
+            margin-top: 40px;
+            padding: 10px 20px;
+            font-family: 'Press Start 2P', cursive;
+            background-color: #5b8c5a;
+            border: 3px solid #3a5a40;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .back-button:hover {
+            background-color: #4a7c4a;
+        }
+        
+        .vinyl-spin {
+            animation: vinylSpin 3s linear infinite;
+            display: inline-block;
+        }
+        
+        @keyframes vinylSpin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="building-page">
+        <h1>Vinyl Store</h1>
+        <p>Welcome to the Vinyl Store!</p>
+        <p>You can find the latest songs for you here!</p>
+        <button class="back-button" onclick="window.location.href='index.html'">← Back to Valley</button>
+        <!-- YouTube Video Link -->
+        <div style="margin: 0 auto 20px auto; margin-top: 20px; max-width: 560px;">
+            <img src="assets/images/buildings/platte.png" alt="Platte" class="vinyl-spin" style="width:75%; height:auto; vertical-align:middle;">
+        </div>
+        <div style="margin: 0 auto 40px auto; max-width: 560px;">
+            <a href="https://youtu.be/7YhB9Xsj6X4" target="_blank" style="
+                display: inline-block;
+                color: #fff;
+                font-size: 1em;
+                line-height: 1.2em;
+                text-decoration: underline;
+                background: rgba(0,0,0,0.5);
+                border: 2px solid #fff;
+                border-radius: 10px;
+                padding: 16px 24px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            ">Listen to the song on YouTube</a>
+        </div>
+    </div>
+</body>
+</html>

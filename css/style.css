@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+body {
+    /* background-color: #0c5818; */
+    overflow: hidden;
+    height: 100vh;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.game-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.game-header {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(91, 140, 90, 0.9);
+    border-bottom: 5px solid #3a5a40;
+}
+
+.game-title {
+    color: #fff;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 0 #3a5a40;
+}
+
+.game-world {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 120px);
+    overflow: hidden;
+}
+
+.valley-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../assets/images/background/background.jpg);
+    z-index: 1;
+}
+/*     background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 30%, #5b8c5a 30%, #5b8c5a 70%, #8B4513 70%);
+*/
+
+/* Character */
+.character {
+    position: absolute;
+    width: 145px;
+    height: 145px;
+    background-image: url('../assets/images/character/hedgehog-down.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s;
+}
+
+/* Buildings */
+.building {
+    position: absolute;
+    width: 256px;
+    height: 256px;
+    cursor: pointer;
+    z-index: 5;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: transform 0.3s, filter 0.3s;
+    filter: drop-shadow(3px 3px 0 rgba(0,0,0,0.3));
+}
+
+.building:hover {
+    transform: scale(1.05) translateX(-5%);
+    filter: drop-shadow(5px 5px 0 rgba(0,0,0,0.3)) brightness(1.1);
+}
+
+.building-label {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 2px solid #3a5a40;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    color: #3a5a40;
+}
+
+/* Building positions */
+.vinyl-store {
+    /* background-color: #d4a574; /* Placeholder color
+    border: 4px solid #8B4513; */
+    left: 15%;
+    top: 30%;
+    background-image: url('../assets/images/buildings/vinyl-store.png');
+}
+
+.memory-library {
+    /* background-color: #aec6cf; /* Placeholder color
+    border: 4px solid #3a5a40; */
+    right: 15%;
+    top: 30%;
+    background-image: url('../assets/images/buildings/memory-library.png');
+}
+
+.post-office {
+    /* background-color: #ffcccb; /* Placeholder color
+    border: 4px solid #b5651d; */
+    left: 50%;
+    bottom: 10%;
+    margin-left: -128px;
+    background-image: url('../assets/images/buildings/post-office.png');
+}
+
+/* Building placeholders - replace with actual images */
+.vinyl-store::before,
+.memory-library::before,
+.post-office::before {
+    font-size: 64px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* .vinyl-store::before { content: "💿"; }
+.memory-library::before { content: "📚"; }
+.post-office::before { content: "📮"; } */
+
+/* Instructions */
+.instructions {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    border: 3px solid #3a5a40;
+    z-index: 20;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #3a5a40;
+}
+
+.instructions p {
+    margin: 5px 0;
+}
+
+.otter {
+    position: absolute;
+    width: 188px;
+    height: 188px;
+    left: 50%;
+    top: 5%;
+    background-image: url(../assets/images/character/otter.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin-left: -100px;
+    z-index: 8;
+}
+
+.otter:hover {
+    transform: scale(1.05) translateX(-5%);
+    filter: drop-shadow(5px 5px 0 rgba(0,0,0,0.3)) brightness(1.1);
+}

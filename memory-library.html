@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinyl Store - Yige's and Carl's Valley</title>
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <style>
+        .building-page {
+            padding: 20px;
+            text-align: center;
+            min-height: 100vh;
+            background-image: url(assets/images/buildings/ml.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+        }
+        .building-page h1 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        .back-button {
+            margin: 20px;
+            margin-top: 40px;
+            padding: 10px 20px;
+            font-family: 'Press Start 2P', cursive;
+            background-color: #5b8c5a;
+            border: 3px solid #3a5a40;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .back-button:hover {
+            background-color: #4a7c4a;
+        }
+    </style>
+</head>
+<body>
+    <div class="building-page">
+        <h1>Memory Library</h1>
+        <p>Welcome to the Memory Library!</p>
+        <p>You can read secret notes that were left for you here!</p>
+        <button class="back-button" onclick="window.location.href='index.html'">← Back to Valley</button>
+        <!-- Pictures -->
+        <div style="margin: 32px auto; margin-top: 90px; margin-bottom: 60px; max-width: 320px; position: relative;">
+            <!-- Tape: Top Right -->
+            <div style="
+                position: absolute;
+                right: 12px;
+                top: -18px;
+                transform: rotate(12deg);
+                width: 60px;
+                height: 22px;
+                background: repeating-linear-gradient(135deg, #f7e7a3 0 8px, #e2d18c 8px 16px);
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+                opacity: 0.85;
+                z-index: 2;
+            "></div>
+            <!-- Tape: Bottom Left -->
+            <div style="
+                position: absolute;
+                left: 8px;
+                bottom: -18px;
+                transform: rotate(-14deg);
+                width: 60px;
+                height: 22px;
+                background: repeating-linear-gradient(135deg, #f7e7a3 0 8px, #e2d18c 8px 16px);
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+                opacity: 0.85;
+                z-index: 2;
+            "></div>
+            <img src="assets/images/tokens/note.jpg" alt="Secret Note" style="
+                width:100%;
+                max-width:320px;
+                border-radius: 8px 32px 16px 24px;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.25), 0 1px 0 #fff inset;
+                background: #fffbe8;
+                transform: rotate(-3deg);
+                display: block;
+            ">
+        </div>
+    </div>
+</body>
+</html>

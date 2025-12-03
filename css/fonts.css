@@ -1,0 +1,15 @@
+/* Fonts for Stardew Valley aesthetic */
+@font-face {
+    font-family: 'Stardew';
+    src: url('../assets/fonts/stardew-font.ttf') format('truetype');
+}
+
+/* Fallback to pixel fonts */
+* {
+    font-family: 'Press Start 2P', cursive, monospace;
+}
+
+.game-title {
+    font-family: 'Stardew', 'Press Start 2P', cursive;
+    text-shadow: 3px 3px 0 #3a5a40;
+}

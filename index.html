@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yige's and Carl's Valley</title>
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1 class="game-title">Yige's and Carl's Valley</h1>
+        </header>
+        
+        <main class="game-world">
+            <div class="valley-background"></div>
+            
+            <!-- Interaction Zones (Houses) -->
+            <div class="building vinyl-store" data-target="vinyl-store.html">
+                <div class="building-label">Vinyl Store</div>
+            </div>
+            
+            <div class="building memory-library" data-target="memory-library.html">
+                <div class="building-label">Memory Library</div>
+            </div>
+            
+            <div class="building post-office" data-target="cafe-art.html">
+                <div class="building-label">Café</div>
+            </div>
+
+            <!-- Interaction Zone: Otter -->
+            <div class="otter"></div>
+            
+            <!-- Character -->
+            <div class="character" id="player-character"></div>
+            
+            <!-- Instructions -->
+            <div class="instructions">
+                <p>> Use Arrow Keys to move the hedgehog</p>
+                <p>> Walk into buildings to enter</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/character.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
